@@ -830,7 +830,7 @@ nav {
 
   position: sticky;
 
-  top: 90px;
+  top: 40px;
 
   background: #080808;
 
@@ -906,7 +906,7 @@ nav {
 
   align-items: flex-start;
 
-  gap: 16px;
+  gap: 10px;
 }
 
 .project-card .project1-heading span {
@@ -971,6 +971,7 @@ nav {
   gap: 8px;
 
   margin-top: 25px;
+  margin-bottom: 15px;
 }
 
 .project-card .project-tech span {
@@ -1051,7 +1052,7 @@ nav {
   }
 
   .project-section .section-title {
-    margin-bottom: 65px;
+    margin-bottom: 54px;
   }
 
   .project-card {

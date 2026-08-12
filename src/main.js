@@ -4,7 +4,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Always start portfolio from Home / top
+// =========================================================
+// ALWAYS START PORTFOLIO FROM HOME / TOP
+// =========================================================
+
 window.history.scrollRestoration = "manual";
 
 window.addEventListener("load", () => {
@@ -53,7 +56,7 @@ if (counter) {
 // INITIAL HERO POSITIONS
 // =========================================================
 
-gsap.set([".heading h1", ".sub-heading h2", ".para p", "button", "nav"], {
+gsap.set([".heading h1", ".sub-heading h2", ".para p", "button"], {
   yPercent: 110,
 });
 
@@ -132,26 +135,22 @@ tl.to(".loader", {
   );
 
 // =========================================================
-// ABOUT & EDUCATION INITIAL POSITION
-// =========================================================
-
-gsap.set(".education-content", {
-  xPercent: -100,
-});
-
-gsap.set(".about-content", {
-  xPercent: -100,
-});
-
-// =========================================================
 // ABOUT SECTION
 // =========================================================
 
+// Responsive initial position
+gsap.set(".about-content", {
+  opacity: 0,
+  x: -80,
+  scale: 0.95,
+});
+
+// About animation
 const tl1 = gsap.timeline({
   scrollTrigger: {
     trigger: ".about-content",
-    start: "top 70%",
-    end: "top 25%",
+    start: "top 75%",
+    end: "top 35%",
     scrub: 1.5,
     markers: false,
   },
@@ -160,14 +159,14 @@ const tl1 = gsap.timeline({
 tl1.fromTo(
   ".about-content",
   {
-    opacity: 0.25,
-    x: 0,
+    opacity: 0,
+    x: -80,
     scale: 0.95,
     filter: "brightness(1.5)",
   },
   {
     opacity: 1,
-    x: 1500,
+    x: 0,
     scale: 1,
     filter: "brightness(1)",
     ease: "none",
@@ -178,11 +177,19 @@ tl1.fromTo(
 // EDUCATION SECTION
 // =========================================================
 
+// Responsive initial position
+gsap.set(".education-content", {
+  opacity: 0,
+  x: -80,
+  scale: 0.95,
+});
+
+// Education animation
 const tl2 = gsap.timeline({
   scrollTrigger: {
     trigger: ".education-content",
-    start: "top 70%",
-    end: "top 25%",
+    start: "top 75%",
+    end: "top 35%",
     scrub: 1.5,
     markers: false,
   },
@@ -191,14 +198,14 @@ const tl2 = gsap.timeline({
 tl2.fromTo(
   ".education-content",
   {
-    opacity: 0.25,
-    x: 0,
+    opacity: 0,
+    x: -80,
     scale: 0.95,
     filter: "brightness(1.5)",
   },
   {
     opacity: 1,
-    x: 1500,
+    x: 0,
     scale: 1,
     filter: "brightness(1)",
     ease: "none",
@@ -209,44 +216,32 @@ tl2.fromTo(
 // CONTACT SECTION
 // =========================================================
 
+// Contact title initial position
 gsap.set(".contact-container .section-title", {
-  xPercent: -100,
+  opacity: 0,
+  x: -80,
+  scale: 0.95,
 });
 
+// Contact timeline
 const tl3 = gsap.timeline({
   scrollTrigger: {
-    trigger: ".contact-container .section-title",
+    trigger: ".contact-container",
     start: "top 80%",
-    end: "top 10%",
+    end: "top 25%",
     scrub: 2,
     markers: false,
   },
 });
 
 tl3
+
+  // Contact heading
   .fromTo(
     ".contact-container .section-title",
     {
-      opacity: 0.25,
-      x: 0,
-      scale: 0.95,
-      filter: "brightness(1.5)",
-    },
-    {
-      opacity: 1,
-      x: 600,
-      scale: 1,
-      filter: "brightness(1)",
-      ease: "none",
-    },
-    1,
-  )
-
-  .fromTo(
-    "form",
-    {
-      opacity: 0.25,
-      x: 500,
+      opacity: 0,
+      x: -80,
       scale: 0.95,
       filter: "brightness(1.5)",
     },
@@ -257,24 +252,50 @@ tl3
       filter: "brightness(1)",
       ease: "none",
     },
-    1.5,
   )
 
+  // Contact form
   .fromTo(
-    ".footer-left, .footer-right",
+    ".contact-container form",
     {
       opacity: 0,
-      y: 60,
+      x: 80,
       scale: 0.95,
+      filter: "brightness(1.5)",
     },
     {
       opacity: 1,
-      y: 0,
+      x: 0,
       scale: 1,
+      filter: "brightness(1)",
       ease: "none",
     },
-    ">+=5",
+    "-=0.3",
   );
+
+// Footer - delayed
+gsap.set(".footer-left, .footer-center, .footer-right", {
+  opacity: 0,
+  y: 40,
+  scale: 0.95,
+});
+
+gsap.to(".footer-left, .footer-center, .footer-right", {
+  opacity: 1,
+  y: 0,
+  scale: 1,
+  duration: 0.8,
+  stagger: 0.15,
+  ease: "power3.out",
+
+  scrollTrigger: {
+    trigger: "footer",
+    start: "top 90%",
+    toggleActions: "play none none reverse",
+    markers: false,
+  },
+});
+
 // =========================================================
 // ACHIEVEMENT SECTION
 // =========================================================
@@ -357,7 +378,7 @@ projectCards.forEach((card, index) => {
 // SKILLS SECTION
 // =========================================================
 
-// Start all skill progress bars from 0%
+// Start all progress bars from 0%
 gsap.set(
   [
     ".html-progress",
@@ -392,7 +413,7 @@ const skillsTl = gsap.timeline({
   },
 });
 
-// Heading animation
+// Heading
 skillsTl.to(".skills-section .section-title", {
   opacity: 1,
   y: 0,
@@ -400,7 +421,7 @@ skillsTl.to(".skills-section .section-title", {
   ease: "power3.out",
 });
 
-// HTML - 90%
+// HTML
 skillsTl.to(
   ".html-progress",
   {
@@ -411,7 +432,7 @@ skillsTl.to(
   "-=0.5",
 );
 
-// CSS - 85%
+// CSS
 skillsTl.to(
   ".css-progress",
   {
@@ -422,7 +443,7 @@ skillsTl.to(
   "-=0.8",
 );
 
-// JavaScript - 85%
+// JavaScript
 skillsTl.to(
   ".javascript-progress",
   {
@@ -433,7 +454,7 @@ skillsTl.to(
   "-=0.8",
 );
 
-// React - 85%
+// React
 skillsTl.to(
   ".react-progress",
   {
@@ -444,7 +465,7 @@ skillsTl.to(
   "-=0.8",
 );
 
-// Redux - 80%
+// Redux
 skillsTl.to(
   ".redux-progress",
   {
@@ -455,7 +476,7 @@ skillsTl.to(
   "-=0.8",
 );
 
-// Tailwind - 85%
+// Tailwind
 skillsTl.to(
   ".tailwind-progress",
   {
@@ -466,7 +487,7 @@ skillsTl.to(
   "-=0.8",
 );
 
-// GSAP - 75%
+// GSAP
 skillsTl.to(
   ".gsap-progress",
   {
@@ -477,7 +498,7 @@ skillsTl.to(
   "-=0.8",
 );
 
-// Git & GitHub - 80%
+// Git & GitHub
 skillsTl.to(
   ".git-progress",
   {
@@ -488,7 +509,7 @@ skillsTl.to(
   "-=0.8",
 );
 
-// REST APIs / Axios - 80%
+// REST APIs / Axios
 skillsTl.to(
   ".api-progress",
   {
@@ -498,3 +519,15 @@ skillsTl.to(
   },
   "-=0.8",
 );
+
+// =========================================================
+// REFRESH SCROLLTRIGGER
+// =========================================================
+
+window.addEventListener("load", () => {
+  ScrollTrigger.refresh();
+});
+
+window.addEventListener("resize", () => {
+  ScrollTrigger.refresh();
+});
